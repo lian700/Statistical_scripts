@@ -30,8 +30,6 @@ dif_flag = '学习截图'
 # 姓名列名
 dif_name = '署名'
 # 读取excel数据
-# index_col选择前两列作为索引列
-# 选择前三列数据，name列作为行索引
 df = pd.read_excel(xlsx_name, sheet_name=sheet_name1)
 complete_persons = df.loc[pd.isnull(df[dif_flag]) == False, [dif_name]]
 

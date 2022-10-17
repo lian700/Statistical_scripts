@@ -19,9 +19,9 @@ complete_persons = df.loc[pd.isnull(df[dif_flag]) == False, [dif_name]]
 ```
 ### 修改脚本
 ```python
-# 不需要做的人数（港澳台）
+# 不需要做的人数
 exclude_numbers = 1
-# 青年大学习期数
+# 期数
 period_name = '22期'
 ```
 ### 运行

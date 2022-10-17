@@ -13,17 +13,17 @@ from pandas import ExcelWriter
 import numpy as np
 
 
-# 不要求但是可以做的人数（群众，港澳台）
+# 不要求但是可以做的人数
 exclude_numbers = 2
 # 青年大学习期数
 period_name = '22期'
 # 接龙导出的excel
 sheet_name1 = 0
 xlsx_name = r'.\接龙统计.xlsx'
-# 团支部名单路径,sheet_name2 表示excel中多sheet的名字或索引
+# 班级名单路径,sheet_name2 表示excel中多sheet的名字或索引
 sheet_name2 = 0
 xlsx_name_update = r'.\班级名单.xlsx'
-# 保存的路径
+# 保存结果的路径
 xlsx_name_save = r'.\output.xlsx'
 # 标志性区别列名，判断条件为空
 dif_flag = '学习截图'
@@ -33,13 +33,7 @@ dif_name = '署名'
 # index_col选择前两列作为索引列
 # 选择前三列数据，name列作为行索引
 df = pd.read_excel(xlsx_name, sheet_name=sheet_name1)
-# 处理未命名列，固定用法
-# print(df)
-# print(df.iloc[:, [0, 1]])
 complete_persons = df.loc[pd.isnull(df[dif_flag]) == False, [dif_name]]
-# print(type(complete_persons))
-# 应该提交截图的总人数
-
 
 df2 = pd.read_excel(xlsx_name_update, sheet_name=sheet_name2)
 
@@ -47,8 +41,8 @@ len_all_numbers = len(df2['学号']) - exclude_numbers
 # 创建新列
 df2.loc[:, period_name] = 0
 
-complete_persons = np.array(complete_persons)
-complete_persons = complete_persons.squeeze(1)
+complete_persons = np.array(complete_persons).squeeze(1)
+
 for i in range(0, len(df2[period_name])):
     # print(df2['姓名'][i])
     if df2['姓名'][i] in complete_persons:
